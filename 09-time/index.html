@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        // Afficher un message au bout de 2 secondes
+        setTimeout(function () {
+            alert('Pub');
+        }, 2000); // 2000 millisecondes
+
+        // Afficher un message dans la console toutes les 5 secondes
+        var interval = setInterval(function () {
+            console.log('test');
+        }, 1000);
+
+        setTimeout(function () {
+            clearInterval(interval); // J'arrête le setInterval au bout
+            // de 3 secondes
+        }, 3000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var title = document.createElement('h1');
+        title.id = 'title';
+        title.textContent = 'Hey, j\'ai changé mon titre en JavaScript';        
+
+        document.body.appendChild(title);
+
+        var div;
+        for (var i = 0; i < 3; i++) {
+            div = document.createElement('div');
+            div.className = 'container';
+            div.textContent = i;
+            document.body.appendChild(div);
+        }
+
+        var paragraphe = document.createElement('p');
+        paragraphe.textContent = 'Un super paragraphe en JS';
+
+        document.getElementsByClassName('container')[0].appendChild(paragraphe);
+    </script>
+</body>
+</html>

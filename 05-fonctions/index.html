@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Les fonctions</title>
+    </head>
+    <body>
+        <script>
+            function addition(n1, n2) {
+                // Le return n'affiche rien mais il garde
+                // le résultat en mémoire
+                return n1 + n2;
+            }
+
+            console.log(addition(10, 4));
+            console.log(addition(11, 5));
+            var somme = addition(10, 3) + addition(5, 5);
+            console.log(somme);
+
+            // Créer une fonction qui permet de dire bonjour à un utilisateur
+            // On pourra passer un prénom à la fonction (Toto) et on
+            // retournera donc "Bonjour Toto"
+            function hello(prenom, lang) {
+                if (lang === 'us') {
+                    // Le return arrête la fonction
+                    return 'Hello ' + prenom;
+                }
+
+                return 'Bonjour ' + prenom;
+            }
+
+            console.log(hello('Toto'));
+            console.log(hello('Matthieu', 'us'));
+            var user1 = prompt('Quel est ton prénom ?');
+            console.log(hello(user1));
+        </script>
+    </body>
+</html>

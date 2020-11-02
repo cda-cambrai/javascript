@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercice</title>
+</head>
+<body>
+    <script>
+        function carre(n) {
+            return n * n;
+        }
+
+        console.log(carre(5)); // Affiche 25
+        console.log(carre(10)); // Affiche 100
+
+        function convert(amount, devise) {
+            if (devise === 'bitcoin') {
+                return amount / 10783.21;
+            }
+
+            return amount * 10783.21;
+        }
+
+        console.log(convert(1000)); // Affiche 10000000 euros
+        console.log(convert(1000, 'bitcoin')); // Affiche 0.01 bitcoin
+        // console.log(convert(prompt('montant ?'), prompt('devise ?')));
+
+        function pgcd(n1, n2) {
+            while (n2 != 0) {
+                if (n1 > n2) {
+                    n1 = n1 - n2;
+                } else {
+                    n2 = n2 - n1;
+                }
+            }
+
+            return n1;
+        }
+
+        console.log(pgcd(10, 5)); // Affiche 5
+        console.log(pgcd(96, 36)); // Affiche 12
+        console.log(pgcd(1368, 1136)); // Affiche 8
+
+        // 4. Créer une fonction qui permet de savoir si un nombre est pair
+        function isPair(n) {
+            // return n % 2 === 0;
+            if (n % 2 === 0) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        console.log(isPair(10)); // Affiche true
+        console.log(isPair(11)); // Affiche false
+  
+        if (isPair(10)) {
+            console.log('10 est pair');
+        }
+        // 5. Créer une fonction qui permet de savoir si un nombre est premier
+        function isPremier(n) {
+            if (n === 1) {
+                return n + ' n\'est pas premier.';
+            }
+
+            for (var i = 2; i < n; i++) {
+                if (n % i === 0) {
+                    return n + ' n\'est pas premier.';
+                }
+            }
+
+            // Si on n'entre jamais dans le if, le nombre est premier
+            return n + ' est premier.';
+        } // Fin de la fonction
+        // Affiche les nombres premiers de 1 à 100
+        for (var i = 1; i <= 100; i++) {
+            console.log(isPremier(i));
+        }
+
+        console.log(isPremier(1));
+        console.log(isPremier(2));
+        console.log(isPremier(7));
+        console.log(isPremier(10)); // Renvoie true ou false
+        // 6. Créer une fonction qui permet de calculer la suite de fibonacci
+        function fibonacci(n) {
+            if (n <= 1) {
+                return n;
+            }
+
+            return fibonacci(n - 1) + fibonacci(n - 2);
+        }
+
+        console.log(fibonacci(10));
+
+        // 7. Créer une fonction permettant de savoir si un mot est un
+        // palindrome
+        function palin(word) {
+            var reverseIndex;
+
+            for (var i = 0; i < word.length; i++) {
+                reverseIndex = (word.length - 1) - i;
+                console.log(i + ' : ' + word[i]);
+                console.log(reverseIndex + ' : ' + word[reverseIndex]);
+                if (word[i] !== word[reverseIndex]) {
+                    return word + ' n\'est pas un palindrome';
+                }
+            }
+
+            return word + ' est un palindrome';
+        }
+
+        function palin2(word) {
+            if (word === word.split('').reverse().join('')) {
+                return word + ' est un palindrome';
+            }
+
+            return word + ' n\'est pas un palindrome';
+        }
+
+        console.log(palin2('kayak'));
+        console.log(palin2('kayik'));
+        console.log(palin('kayak')); // Est un palin
+        console.log(palin('atta')); // Est un palin
+        console.log(palin('tata')); // n'est pas un palin
+    </script>
+</body>
+</html>

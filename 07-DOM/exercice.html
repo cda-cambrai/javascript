@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="title">Doit changer</h1>
+    <!-- div.container*3>{$} -->
+    <div class="container">1</div>
+    <div class="container">2</div>
+    <div class="container">3</div>
+
+    <script>
+        var title = document.getElementById('title');
+        title.textContent = 'Hey, j\'ai changé mon titre en JavaScript';
+
+        var paragraphe = document.createElement('p'); // <p></p>
+        paragraphe.textContent = 'Un super paragraphe en JS'; // <p>Un super paragraphe en JS</p>
+
+        document.getElementsByClassName('container')[0].appendChild(paragraphe);
+    </script>
+</body>
+</html>

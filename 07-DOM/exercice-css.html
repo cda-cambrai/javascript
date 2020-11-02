@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Totam quas reiciendis ipsam rerum sapiente quisquam minus cupiditate eveniet nostrum, aspernatur, repellendus quo. Eius, obcaecati nostrum nemo odit at expedita placeat.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur quis vero illo quia, eaque iure sunt excepturi labore velit optio dicta tenetur ab assumenda, in expedita odit neque deserunt dolorem?</p>
+
+    <script>
+        // 1. Changer la couleur de fond de body avec #d5b9b9 en JavaScript
+        document.body.style.backgroundColor = '#d5b9b9';
+
+        // 2. Augmenter la taille des paragraphes à 21px
+        var paragraphes = document.getElementsByTagName('p'); // Sélectionne les paragraphes
+
+        for (var i = 0; i < paragraphes.length; i++) {
+            paragraphes[i].style.fontSize = '21px';
+        }
+
+        // 3. Créer une balise a, ajouter un lien via l'attribut href (en js) vers https://developer.mozilla.org/
+        // 4. Changer la couleur du a en couleur #ffffff et non souligné (en js)
+        var link = document.createElement('a');
+        link.href = 'https://developer.mozilla.org/';
+        link.textContent = 'Cliquer ici';
+        document.body.appendChild(link); // Ajouter le lien dans le DOM sur
+        // la page
+
+        link.style.color = '#fff';
+        link.style.textDecoration = 'none';
+
+        // BONUS: créer une fonction qui génére un code couleur aléatoire.
+        function randomColor() {
+            var letters = '0123456789abcdef';
+            var color = '#';
+
+            // Cadenas (Décimales)
+            // 0000 => 10^4 => 10000
+            // Couleurs héxadécimales
+            // #000000 => 16^6 => 16 millions de couleurs
+            // rgb(125, 147, 25);
+
+            for (var i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+
+            // color += '#'+Math.floor(Math.random() * 0xFFFFFF<<0).toString(16);
+
+            // Exemple RGB
+            var colors = [];
+            for (var i = 0; i < 3; i++) {
+                colors.push(Math.round(Math.random() * 255));
+            }
+            var rgb = 'rgb('+colors[0]+', '+colors[1]+', '+colors[2]+')';
+            console.log(rgb);
+
+            return color;
+        }
+
+        console.log(randomColor());
+        document.body.style.backgroundColor = randomColor();
+
+        /*
+        BONUS: On va essayer de trouver un certain mot dans un p
+        Si on cherche "Lorem" par exemple, on va devoir remplacer tous les mots "Lorem"
+        par "<span style="color: green">Lorem</span>"
+        Pour faire ça, on doit récupérer le contenu du p, on doit transformer la chaine en tableau où chaque mot est un élément de ce tableau.
+        A partir de là, on peut parcourir le tableau et trouver le mot en question puis le remplacer dans le tableau.
+        A la fin, on remplace le contenu du p par le tableau modifié qui sera d'abord transformé en chaine.
+        */
+    </script>
+</body>
+</html>

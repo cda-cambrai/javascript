@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="identifier" class="classe a b">Salut le HTML</div>
+
+    <script>
+        // Comment récupérer la div en JS ?
+        var divById = document.getElementById('identifier');
+        // Attention, getElementsByClassName() renvoie un tableau
+        var divByClass = document.getElementsByClassName('classe')[0];
+
+        // On peut récupérer les infos de la div
+        console.log(divById.className); // Affiche "classe a b"
+        console.log(divByClass.id); // Affiche "identifier"
+        console.log(divByClass.textContent); // Affiche "Salut le HTML"
+
+        divByClass.textContent = 'Salut le JS'; // On peut changer le contenu de la div
+
+        // Créer un élément HTML en JS
+        var p = document.createElement('p');
+        p.textContent = 'Je suis un paragraphe en JS';
+        var p1 = document.createElement('p');
+        p1.textContent = 'Je suis au début';
+
+        document.body.prepend(p1); // On ajoute le p dans le DOM au début de body
+        document.body.appendChild(p); // On ajoute le p dans le DOM à la fin de body
+
+        // var divById = document.getElementById('identifier');
+        // Changer le css en js
+        // background-color => backgroundColor : Ceci est du CamelCase
+        divById.style.backgroundColor = '#0000ff';
+        divById.style.fontSize = '33px';
+    </script>
+</body>
+</html>

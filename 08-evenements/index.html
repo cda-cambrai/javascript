@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="titre">Mon titre</h1>
+
+    <script>
+        // Un événément est lié à une fonction anonyme
+        // On appelle ça un callback (Fonction qui sera appelée en retour
+        // de l'événement)
+
+        // Ancienne syntaxe - DOM-0
+        document.getElementById('titre').onclick = function () {
+            alert('Salut les gens');
+        }
+        // Le dernier callback est écrasé
+        document.getElementById('titre').onclick = function () {
+            alert('Salut les gens BBBBBBBB');
+        }
+
+        // Nouvelle syntaxe - DOM-2
+        document.getElementById('titre').addEventListener('click', function () {
+            alert('Re les gens');
+        });
+
+        // Là, on ajoute l'événement et on ne l'écrase pas
+        document.getElementById('titre').addEventListener('click', function () {
+            alert('Re les gens VVVVVVVVV');
+        });
+    </script>
+</body>
+</html>

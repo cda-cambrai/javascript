@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Distributeur</title>
+    </head>
+    <body>
+        <script>
+            /*var amount = 1000000; // Le montant de l'utilisateur
+            var rest;
+            var bankNote500 = 0; // Quantité de billets
+            var bankNote200 = 0;
+            var bankNote100 = 0;
+            var bankNote50 = 0;
+            var bankNote20 = 0;
+            var bankNote10 = 0;
+            var bankNote5 = 0;
+            var bankNote2 = 0;
+            var bankNote1 = 0;
+
+            rest = amount;
+            // Combien de billets de 500 dans 888 ?
+            bankNote500 = Math.floor(rest / 500); // 1.10 devient 1
+            rest = rest % 500;
+            // Combien de billets de 200 dans 388 ?
+            bankNote200 = Math.floor(rest / 200);
+            rest = rest % 200;
+            // Combien de billets de 100 dans 188 ?
+            bankNote100 = Math.floor(rest / 100);
+            rest = rest % 100;
+            // Combien de billets de 50 dans 88 ?
+            bankNote50 = Math.floor(rest / 50);
+            rest = rest % 50;
+            // Combien de billets de 20 dans 38 ?
+            bankNote20 = Math.floor(rest / 20);
+            rest = rest % 20;
+            // Combien de billets de 10 dans 18 ?
+            bankNote10 = Math.floor(rest / 10);
+            rest = rest % 10;
+            // Combien de billets de 5 dans 8 ?
+            bankNote5 = Math.floor(rest / 5);
+            rest = rest % 5;
+            // Combien de billets de 2 dans 3 ?
+            bankNote2 = Math.floor(rest / 2);
+            rest = rest % 2;
+            // Combien de billets de 1 dans 1 ?
+            bankNote1 = Math.floor(rest / 1);
+            rest = rest % 1;
+
+            console.log(bankNote500, bankNote200, bankNote100, bankNote50, bankNote20, bankNote10, bankNote5, bankNote2, bankNote1);*/
+
+            // Code refactorisé, DRY (Don't repeat yourself)
+            var amount = parseInt(prompt('Quel montant voulez-vous ?'));
+            var rest = amount;
+            var bankNotesChoice = parseInt(prompt('Quel billet voulez-vous ? (500 / 200 / 100 / 50 / 20 / 10 / 5 / 2 / 1)'));
+            var bankNotes = [500, 200, 100, 50, 20, 10, 5, 2, 1];
+            var bankNotesQuantities = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            for (var j = 0; j < bankNotes.length; j++) {
+                if (bankNotes[j] === bankNotesChoice) {
+                    bankNotesQuantities[j] = Math.floor(rest / bankNotesChoice);
+                    rest = rest % bankNotesChoice;
+                }
+            }
+
+            for (var i = 0; i < bankNotes.length; i++) {
+                if (rest > 0 && bankNotes[i] !== bankNotesChoice) {
+                    bankNotesQuantities[i] = Math.floor(rest / bankNotes[i]);
+                    // Alternative: (rest - rest % bankNotes[i]) / bankNotes[i]
+                    rest = rest % bankNotes[i];
+                }
+            }
+            console.log(bankNotesQuantities);
+        </script>
+    </body>
+</html>

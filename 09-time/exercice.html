@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="job">Intégrateur</h1>
+    <div id="clock"></div>
+
+    <script>
+        /*
+        1. Ecrire un script qui change le contenu d'un h1 toutes les 5 secondes avec les valeurs suivantes: Intégrateur, Développeur, Administrateur système.
+        */
+        var jobs = ['Intégrateur', 'Développeur', 'Administrateur système'];
+        var i = 0;
+        setInterval(function () {
+            if (i === 3) {
+                i = 0;
+            }
+
+            document.getElementById('job').textContent = jobs[i++ % 3];
+        }, 5000);
+
+        /*
+        2. Ecrire un script qui change la couleur de fond du body au bout de 5 secondes avec une transition
+        */
+        setInterval(function () {
+            document.body.style.transition = '0.5s'; // Durée de la transition
+            document.body.style.backgroundColor = '#'+Math.floor(Math.random() * 0xFFFFFF).toString(16);
+        }, 5000);
+
+        /*
+        3. Renseignez vous sur la classe Date et essayez d'afficher l'heure sur une page au format HH:MM:SS
+        4. Rafraichir la valeur de l'heure toutes les secondes
+        */
+        setInterval(function () {
+            var date = new Date();
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var seconds = date.getSeconds();
+
+            if (hours < 10) {
+                hours = '0'+hours;
+            }
+
+            if (minutes < 10) {
+                minutes = '0'+minutes;
+            }
+
+            if (seconds < 10) {
+                seconds = '0'+seconds;
+            }
+
+            document.getElementById('clock').textContent = hours+':'+minutes+':'+seconds;
+        }, 1000);
+
+        /*
+         Exercice Bonus:
+         On va essayer de réaliser un slider (Sans Bootstrap).
+         Il nous faudra trois images. On aura également deux flèches (droite et gauche).
+         On affiche la première image. On clique (souris) sur la flêche de droite, on change cette image par la seconde et ainsi de suite. Quand on est sur la troisième image, on arrive sur la première image. On peut faire pareil avec la flèche gauche.
+         BONUS 1: Il faudrait qu'en appuyant sur la flèche droite ou gauche (clavier), on puisse faire défiler le slider (Utiliser un événement et détecter la touche pressée).
+         BONUS 2: Il faudrait obtenir une transition entre les slides (effet tapisserie ou d'opacité).
+         BONUS 3: Avoir un défilement automatique toutes les 5 secondes.
+
+         Ancien bonus: On va essayer de trouver un certain mot dans un p
+         Si on cherche "Lorem" par exemple, on va devoir remplacer tous les mots "Lorem"
+         par "<span style="color: green">Lorem</span>"
+         Pour faire ça, on doit récupérer le contenu du p, on doit transformer la chaine en tableau où chaque mot est un élément de ce tableau.
+         A partir de là, on peut parcourir le tableau et trouver le mot en question puis le remplacer dans le tableau.
+         A la fin, on remplace le contenu du p par le tableau modifié qui sera d'abord transformé en chaine.
+
+         TP Git: Mettre une de vos réalisations sur Github
+         Il faudra créer un nouveau dépôt sur Github.
+         Il faudra ensuite sélectionner un TP/Projet/Maquette et se déplacer dans ce dossier.
+         On pourra donc initialiser un dépôt git, créer un premier commit et push tout cela sur le dépôt Github.
+         git init   ->   Initialiser le dépôt dans ton dossier
+         git remote add origin ... -> Lier ton dépôt local avec Github
+         git add .
+         git commit -m ""
+         git push -u origin master
+        */
+    </script>
+</body>
+</html>

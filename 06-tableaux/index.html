@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Les tableaux en JS</title>
+</head>
+<body>
+    <script>
+        /*
+            Les tableaux en JS
+        */
+        var prenoms = ['Toto', 'Titi', 'Tata'];
+
+        prenoms.push('Tutu'); // On ajoute tutu à la fin du tableau
+        prenoms.push(prompt('Comment tu t\'appelles ?'));
+        
+        console.log(prenoms[1]); // Affiche Titi
+
+        for (var i = 0; i < prenoms.length; i++) {
+            console.log(prenoms[i]);
+        }
+
+        prenoms.pop(); // Permet de retirer le dernier élément
+        prenoms.unshift('Léonard'); // On ajoute le prénom au début du tableau
+
+        // On veut ajouter un prénom entre Titi et Tata
+        // 3 est l'index de Tata car on a ajouté Léonard
+        // On peut mettre 1 au lieu de 0 si on veut remplacer Tata
+        prenoms.splice(3, 0, 'Max');
+
+        prenoms.shift(); // On enlève la première valeur
+
+        // ["Toto", "Titi", "Max", "Tata", "Tutu"]
+        console.log(prenoms);
+    </script>
+</body>
+</html>

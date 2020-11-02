@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* Exercices tableaux
+        1. Créer un tableau avec les jours de la semaine sans lundi et vendredi.
+            Ajouter lundi et vendredi (pas dans le tableau initial).
+            Afficher le 3ème jour de la semaine.
+            Combien y-a-t-il de jours ?
+            */
+        var days = ['mardi', 'mercredi', 'jeudi', 'samedi', 'dimanche'];
+        days.unshift('lundi');
+        //days.push('vendredi');
+        //days.splice(4, 0, 'vendredi');
+        days.splice(-2, 0, 'vendredi'); // On part de la fin du tableau
+        console.log(days[2]);
+        console.log(days.length);
+        console.log(days);
+        /*
+        2. Créer un tableau avec des aliments: Poulet, Frites, Chocolat
+            Demander à l'utilisateur ce qu'il veut manger. Nous vérifierons que l'aliment est présent ou non dans
+            le tableau
+        */
+        var meals = ['Poulet', 'Frites', 'Chocolat'];
+        var choice = prompt('Que veux-tu manger ?');
+        var canEat = false;
+
+        for (var i = 0; i < meals.length; i++) {
+            if (meals[i] === choice) { // L'aliment saisi est présent dans le tableau
+                canEat = true;
+            }
+        }
+
+        if (canEat) { // if (canEat === true) {
+            console.log('Ok');
+        } else {
+            console.log('Pas ok');
+        }
+
+        // Alternative avec les ifs ou le switch
+        if ('Poulet' === choice) {
+            console.log('ok');
+        } else if ('Frites' === choice) {
+            console.log('ok');
+        } else if ('Chocolat' === choice) {
+            console.log('ok');
+        } else {
+            console.log('pas ok');
+        }
+
+        // Un switch est un if sous une forme différente
+        switch (choice) {
+            case 'Poulet':
+                console.log('ok poulet');
+            break;
+            case 'Frites':
+                console.log('ok frites');
+            break;
+            case 'Chocolat':
+                console.log('ok chocolat');
+            break;
+            default:
+                console.log('pas ok');
+        }
+
+        /*
+        3. Ecrire un script qui demande à l'utilisateur de taper 5 nombres. Une fois terminé,
+            on affichera les nombres en précisant s'ils sont pairs ou impairs.
+        */
+        var numbers = [];
+        for (var i = 1; i <= 5; i++) {
+            numbers.push(parseInt(prompt('Saisissez le nombre numéro '+i+' :')));
+        }
+
+        for (var i = 0; i < numbers.length; i++) {
+            if (numbers[i] % 2 === 0) {
+                console.log(numbers[i] + ' est pair.');
+            } else {
+                console.log(numbers[i] + ' est impair.');
+            }
+        }
+        /* 4. Créer un tableau avec une liste de notes (10, 14, 18, 2, 10).
+            Calculer la moyenne.
+            Afficher la note la plus haute du tableau.
+            Afficher la note la plus basse du tableau.
+            BONUS: Demander à l'utilisateur de remplir la liste de notes */
+        var notes = [];
+        var note = parseInt(prompt('Saisir une note')); // Renvoie NaN si ce n'est pas un nombre
+        while (!isNaN(note)) { // Tant que la note n'est pas NaN, il continue de taper un nombre
+            notes.push(note); // On mets la note dans le tableau seulement si c'est un nombre
+            note = parseInt(prompt('Saisir une note'));
+        }
+        var somme = 0;
+        var max = 0;
+        var min = 20;
+        for (var i = 0; i < notes.length; i++) {
+            somme += notes[i];
+
+            // Trouver la note la plus haute
+            if (notes[i] > max) {
+                max = notes[i];
+            }
+
+            if (notes[i] < min) { // Trouver la note la plus basse
+                min = notes[i];
+            }
+        }
+
+        if (notes.length > 0) {
+            console.log('La moyenne est ' + somme / notes.length);
+            console.log('La note la plus haute est ' + max);
+            console.log('La note la plus basse est ' + min);
+        }
+        
+        /* 5. BONUS: Vous demanderez à l'utilisateur un nombre (5 par exemple).
+           De ce nombre, vous allez remplir un tableau de couleurs aléatoire (5 couleurs par exemple) parmi rouge jaune et bleu
+           rouge, rouge, jaune, bleu, jaune ------> rouge et jaune
+           rouge, rouge, bleu, jaune, rouge ------> rouge
+           Vous afficherez alors les 2 couleurs étant apparues le plus de fois. S'il n'y en a qu'une alors il n'y en a qu'une...
+        */
+        var number = parseInt(prompt('Combien de couleurs ?'));
+        var references = ['bleu', 'jaune', 'rouge']; // Les couleurs qui peuvent sortir en aléatoire
+        var quantities = [];
+        var colors = []; // Tableau avec les couleurs aléatoires
+        var selected = []; // Tableau qui sert à trouver les couleurs étant apparues le plus de fois.
+        var color, indexColor;
+
+        for (var i = 0; i < references.length; i++) { // Permet d'initialiser le tableau de quantités
+            quantities[i] = 0; // ou quantities.push(0);
+        }
+
+        // Remplir le tableau de couleurs
+        for (var i = 0; i < number; i++) {
+            color = references[Math.floor(Math.random() * references.length)]; // Une couleur aléatoire
+            colors.push(color);
+        }
+
+        for (var i = 0; i < colors.length; i++) {
+            indexColor = references.indexOf(colors[i]); // Renvoie 1 l'index de jaune
+            // colors[i]; Renvoie Jaune
+            quantities[indexColor]++; // On incrémente la quantité de la couleur jaune
+        }
+
+        // Trouver la première couleur la plus apparue
+        var max = 0;
+        for (var i = 0; i < quantities.length; i++) { // [2, 2, 2] [1, 4, 5] [1, 1, 3]
+            if (quantities[i] > max) {
+                selected[0] = i; // On ajoute l'index de la couleur dans selected
+                max = quantities[i];
+            }
+        }
+
+        var max2 = 0;
+        for (var i = 0; i < quantities.length; i++) { // [2, Y, X] [1, Y, X] [1, 1, X]
+            if (i === selected[0]) { // Si on tombe sur une valeur déjà présente dans selected, on la passe
+                continue; // On passe à l'itération suivante
+            }
+
+            if (quantities[i] === max) { // Si une couleur est ex aequo avec la première
+                selected[1] = i;
+            }
+
+            if (quantities[i] > max2) {
+                selected[1] = i; // On ajoute l'index de la couleur dans selected
+                max2 = quantities[i];
+            }
+
+            // On pourrait aussi vérifier qu'on rentre plus d'une fois dans le if et dans ce
+            // cas, faire un pop sur selected pour ne pas afficher la 2ème couleur
+        }
+
+        console.log(colors, quantities, selected);
+    </script>
+</body>
+</html>

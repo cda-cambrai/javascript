@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C'est plus c'est moins</title>
+</head>
+<body>
+    <script>
+        // Préparer les variables
+        var choice = parseInt(prompt('Saisir un nombre entre 1 et 100'));
+        var good = Math.floor(Math.random() * 100) + 1;
+        var count = 1;
+
+        while (choice !== good) {
+            count++; // On incrémente le nombre d'essai
+            if (choice < good) {
+                choice = parseInt(prompt('C\'est trop petit'));
+            }
+
+            if (choice > good) {
+                choice = parseInt(prompt('C\'est trop grand'));
+            }
+
+            // Permet de vérifier que l'utilisateur saisit bien un nombre
+            if (isNaN(choice)) {
+                choice = parseInt(prompt('Ceci n\'est pas un nombre \n aaa'));
+            }
+        }
+
+        // if (choice === good) {
+            alert('Tu as gagné en ' + count + ' fois.');
+        // }
+    </script>
+</body>
+</html>

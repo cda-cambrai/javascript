@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <img id="image" src="img/cat.png" alt="">
+    <h1 id="title">Un titre en couleur</h1>
+
+    <button id="change-color">Changer la couleur de fond</button>
+
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+    <!-- Définir la méthode en POST permet d'éviter d'avoir des "infos" dans l'URL
+        (à voir en PHP) -->
+    <form method="POST">
+        <input type="text" id="name">
+        <button type="submit" id="submit">Afficher</button>
+    </form>
+
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+    <h2 id="message-content"></h2>
+    <input type="text" id="message">
+
+    <script>
+        var image = document.getElementById('image');
+        image.addEventListener('mouseenter', function () {
+            // On survole l'image
+            image.src = 'img/lion.png';
+        });
+
+        // Comment remettre l'image du chat quand on quitte le survol ?
+        image.addEventListener('mouseleave', function () {
+            image.src = 'img/cat.png';
+        });
+
+        // event est un objet qui représente l'événement
+        function changeImage(event) {
+            console.log(event);
+            if (event.type === 'mouseenter') {
+                image.src = 'img/lion.png';
+            } else {
+                image.src = 'img/cat.png';
+            }
+        }
+        // On utilise une fonction nommée pour les événements
+        image.addEventListener('mouseenter', changeImage);
+        image.addEventListener('mouseleave', changeImage);
+
+        // 2. Titre en couleur
+        // <h1 id="title">Un titre en couleur</h1>
+        var title = document.getElementById('title');
+        title.addEventListener('click', function () {
+            // this se reporte à l'objet qui est écouté (cliqué)
+            this.style.color = '#f5f8e1';
+        });
+
+        // 3. Changer la couleur de fond
+        var changeColor = document.getElementById('change-color');
+        changeColor.addEventListener('click', function () {
+            document.body.style.backgroundColor = '#a4f15b';
+        });
+
+        // 4. Formulaire
+        var button = document.getElementById('submit');
+        var inputName = document.getElementById('name');
+        button.addEventListener('click', function (event) {
+            event.preventDefault(); // Désactive l'envoi du formulaire au serveur
+
+            alert(inputName.value);
+        });
+
+        /**
+            BONUS: h1 dynamique
+            Créer un formulaire avec un champ
+            On saisit une valeur dans ce champ et à chaque fois qu'elle
+            change, on doit la récupérer et l'ajouter dans le contenu du
+            h1
+        */
+        // <h2 id="message-content"></h2>
+        // <input type="text" id="message">
+        var inputMessage = document.getElementById('message');
+        // L'événement est exécuté dès que la value du input change
+        inputMessage.addEventListener('input', function () {
+            document.getElementById('message-content').textContent = inputMessage.value;
+        });
+    </script>
+</body>
+</html>
