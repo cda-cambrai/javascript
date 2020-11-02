@@ -16,17 +16,38 @@
         var index = 0;
         var image = document.getElementById('image');
 
-        document.getElementById('left').addEventListener('click', function () {
+        function moveToLeft() {
             if (index <= 0) {
                 index = images.length;
             }
+            image.src = images[--index % images.length];
+        }
 
-            image.src = images[--index];
+        function moveToRight() {
+            image.src = images[++index % images.length];
+        }
+
+        document.getElementById('left').addEventListener('click', function () {
+            moveToLeft();
         });
 
         document.getElementById('right').addEventListener('click', function () {
-            image.src = images[++index % images.length];
+            moveToRight();
         });
+
+        // BONUS Clavier
+        document.addEventListener('keyup', function (event) {
+            if (event.keyCode === 37) { // Si flèche gauche
+                moveToLeft();
+            } else if (event.keyCode === 39) { // Sinon si flèche droite
+                moveToRight();
+            }
+        });
+
+        // BONUS Automatique
+        setInterval(function () {
+            moveToRight();
+        }, 5000);
     </script>
 </body>
 </html>
