@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery</title>
+
+    <!-- Il manque 1 link de Bootstrap -->
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <!-- Le lien css vient ici -->
+</head>
+<body>
+    <div class="container">
+        <h1>Hello jQuery</h1>
+        <p id="toto">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis totam itaque temporibus aperiam distinctio. Perferendis fuga minima voluptatem eaque est, neque esse aut tenetur molestias ipsa sapiente magnam blanditiis in!</p>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis totam itaque temporibus aperiam distinctio. Perferendis fuga minima voluptatem eaque est, neque esse aut tenetur molestias ipsa sapiente magnam blanditiis in!</p>
+    </div>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+    <script src="jquery-3.5.1.min.js"></script>
+    <!-- Il manque 1 script de Bootstrap (Bundle) -->
+    <script src="bootstrap.bundle.min.js"></script>
+    <!-- Le script js vient ici -->
+    <script>
+        // Changer le background du h1 en jQuery
+        $('h1').text('Good Bye JavaScript'); // En js : document.getElementsByTagName('h1')[0].textContent = 'Good Bye';
+        // Changer la couleur des p
+        $('p').css('color', 'blue');
+        // CSS avec plusieurs propriétés
+        $('p').css({
+            'background-color': 'lightgray',
+            fontSize: '30px',
+        });
+        // Sélectionner le premier p
+        $('p').first().css('color', 'red');
+
+        // Cacher un élément
+        $('.container > #toto').hide();
+        $('.container > #toto').fadeOut()
+        // Afficher un élément
+        $('.container > #toto').show();
+        $('.container > #toto').fadeIn();
+
+        // Chercher tous les p dans .container
+        $('.container').find('p');
+
+        $('#toto').parent(); // Sélectionne la div .container
+        $('#toto').parent().children(); // Sélectionne les enfants de la div .container
+        $('#toto').parent().children('h1').next(); // Sélectionne l'élément suivant le h1 donc #toto
+        $('#toto').prev(); // Sélectionne le h1
+        $('p').eq(1); // Sélectionne le second p
+    </script>
+</body>
+</html>
