@@ -32,6 +32,7 @@ $('.square').css({
     width: 100, // jQuery va deviner 100px
     height: 100,
     position: 'absolute',
+    boxShadow: '0 0 4px black',
 });
 
 // Animation sur un carré
