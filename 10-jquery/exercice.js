@@ -54,3 +54,25 @@ $('.on-off').click(function () {
     // Permet de passer state à false si il est true et vice-versa
     state = !state;
 });
+
+// Texte déroulant
+// $('p').hide(); // Je cache le texte
+
+var isDisplay = false; // Le texte est caché
+$('.slide').click(function () {
+    // $('p').slideToggle();
+
+    // On ne peut utiliser que des valeurs numériques pour le animate
+    // display, visibility ou background-color ne fonctionnent pas.
+    if (isDisplay) { // Si le texte est affiché
+        $('p').animate({
+            opacity: 0
+        }, 500);
+        isDisplay = false;
+    } else {
+        $('p').animate({
+            opacity: 1
+        }, 500);
+        isDisplay = true;
+    }
+});
