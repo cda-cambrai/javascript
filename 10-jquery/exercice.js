@@ -5,7 +5,8 @@ $('.on-off').css({
     //outline: 0, border: 0,
 });
 
-$('.on-off').click(function () {
+/* Première version */
+$('on-off').click(function () {
 
     if ($('.on-off').text() === 'On') {
 
@@ -31,4 +32,25 @@ $('.on-off').click(function () {
 
     }
 
+});
+
+/* Seconde version */
+var state = true; // Etat du bouton ouvert
+$('.on-off').click(function () {
+    // Ajoute la classe si elle n'est pas présente sur l'élément
+    // Supprime la classe si elle est présente sur l'élément
+    // $('.on-off').toggleClass('off');
+
+    if (state) {
+        $('.on-off').addClass('off').removeClass('on');
+        $('.on-off').text('Off');
+        //state = false;
+    } else {
+        $('.on-off').addClass('on').removeClass('off');
+        $('.on-off').text('On');
+        //state = true;
+    }
+
+    // Permet de passer state à false si il est true et vice-versa
+    state = !state;
 });
