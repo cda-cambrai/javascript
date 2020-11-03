@@ -55,7 +55,7 @@ $('.on-off').click(function () {
     state = !state;
 });
 
-// Texte déroulant
+// 2ème exercice : Texte déroulant
 // $('p').hide(); // Je cache le texte
 
 var isDisplay = false; // Le texte est caché
@@ -76,3 +76,20 @@ $('.slide').click(function () {
         isDisplay = true;
     }
 });
+
+// 3ème exercice : Le texte 
+
+var size = parseInt($('.text-size').css('font-size')) / 16;
+$('.text-size').click(function () {
+    if (size === 1) {
+        size = 1.5;
+    } else {
+        size = 1;
+    }
+
+    $('.text-size').css('font-size', size+'em');
+});
+
+// 4ème exercice : Le rectangle
+
+
