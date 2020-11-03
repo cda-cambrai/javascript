@@ -92,4 +92,37 @@ $('.text-size').click(function () {
 
 // 4ème exercice : Le rectangle
 
+$('.rectangle').css({
+    width: 100,
+    height: 10,
+    'background-color': '#ff0000'
+});
 
+var height = 10;
+$('#bouton1').click(function () {
+    height += 10;
+
+    if ($('.rectangle').height() >= 100) {
+        height = 10;
+        // Le .off supprime la function du click
+        // $('#bouton1').off('click');
+    }
+
+    $('.rectangle').css('height', height);
+});
+
+$('#bouton2').click(function () {
+    $('.rectangle').css('background-color', 'green');
+});
+
+$('#bouton3').click(function () {
+    $('.rectangle').css('background-color', '#ff0000');
+});
+
+$('#bouton4').click(function () {
+    $('.rectangle').fadeOut();
+});
+
+$('#bouton5').click(function () {
+    $('.rectangle').fadeIn();
+});
