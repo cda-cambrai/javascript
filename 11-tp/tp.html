@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        li {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center py-4">La liste de Fiorella</h1>
+
+        <div class="row">
+            <div class="col-lg-4 offset-lg-2">
+                <ul class="list-group">
+                    <li class="list-group-item">Sophie la girafe</li>
+                    <li class="list-group-item">Trotteur</li>
+                    <li class="list-group-item">Livre</li>
+                    <li class="list-group-item">Petit ours brun</li>
+                    <li class="list-group-item">Doudou</li>
+                    <li class="list-group-item">Léon l'ourson</li>
+                    <li class="list-group-item">Piano</li>
+                    <li class="list-group-item">Cubes et sphères</li>
+                </ul>
+
+                <div id="max-gifts" style="display: none">
+                    Attends ton anniversaire
+                </div>
+            </div> <!-- /.col-lg-4 -->
+
+            <div class="col-lg-4">
+                <h2>Ta liste de cadeaux</h2>
+
+                <ul id="gifts"></ul>
+                <div id="counter"></div>
+            </div>
+        </div> <!-- /.row -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        var gifts = [];
+
+        $('li').click(function () {
+            console.log('TOTO');
+            var li = $(this); // this représente le li qui a été cliqué
+            $('#max-gifts').hide();
+
+            // Vérifier si le cadeau est déjà choisi
+            for (var i = 0; i < gifts.length; i++) {
+                if (li.text() === gifts[i]) { // Si le cadeau est déjà choisi
+                    li.css('text-decoration', 'none');
+                    // Supprimer l'élément 1 du tableau avec 1 seul élément
+                    gifts.splice(i, 1);
+                    // Supprimer le cadeau de la seconde liste
+                    console.log('#gifts li:contains("'+li.text()+'")');
+
+                    // Récap concaténation
+                    var metier = 'développeur';
+                    'Je suis "développeur"';
+                    // Concaténation classique
+                    'Je suis "' + metier + '"';
+                    // On peut aujourd'hui utiliser le backtick (Alt Gr + 7)
+                    `Je suis "${metier}"`;
+
+                    $('#gifts li:contains("'+li.text()+'")').remove();
+                    $(`#gifts li:contains("${li.text()}")`); // Alternative en backtick
+
+                    // On oublie pas de mettre à jour le compteur
+                    $('#counter').text('Fiorella a choisi '+gifts.length+' cadeau(x). Il en reste '+(5 - gifts.length)+'.');
+                    return; // On arrête la function du clique
+                    // break; // On arrête le for
+                }
+            }
+
+            // Vérifier qu'on a pas 5 cadeaux
+            if (gifts.length >= 5) {
+                $('#max-gifts').show();
+
+                return; // On ne fait rien si on a plus de 5 cadeaux
+            }
+
+            li.css('text-decoration', 'line-through');
+            gifts.push(li.text()); // J'ajoute le cadeau dans le tableau
+            // Ajout d'un li dans le ul#gifts (BONUS 1)
+            var newLi = $('<li></li>');
+            // Méthode pour BONUS 2 (Ne fonctionne pas)
+            // newLi.attr('id', 'index-'+(gifts.length - 1));
+            // .text() vs html()
+            // newLi.text('<script>alert("aaa")<\/script>');
+            // newLi.html('<script>alert("aaa")<\/script>');
+            newLi.html('<strong>'+li.text()+'</strong>');
+            $('#gifts').append(newLi);
+
+            // Phrase compteur
+            var p = $('<p></p>');
+            p.text('Fiorella a choisi '+gifts.length+' cadeau(x). Il en reste '+(5 - gifts.length)+'.');
+            // .empty() supprime les enfants de la div
+            $('#counter').empty(); // Vide la div qui a l'id counter (On supprime tous les anciens p)
+            $('#counter').append(p);
+
+            // $('#counter').text('Fiorella a choisi '+gifts.length+' cadeau(x). Il en reste '+(5 - gifts.length)+'.');
+        });
+    </script>
+</body>
+</html>

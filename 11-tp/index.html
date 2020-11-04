@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="toto">A</div>
+    <div class="toto">B</div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // JS - Créer des éléments dans le DOM
+        var title = document.createElement('h1');
+        document.body.appendChild(title);
+
+        // jQuery - Créer des éléments dans le DOM
+        var title = $('<h1></h1>'); // Permet de créer un h1 en jQuery
+        $('body').append(title); // Ajoute le h1 dans le body
+
+        // Utilisation de this
+        $('.toto').click(function () {
+            console.log($(this)); // $(this) représente l'élément cliqué
+        });
+
+        var cadeaux = [];
+        cadeaux.push('voiture');
+    </script>
+</body>
+</html>
