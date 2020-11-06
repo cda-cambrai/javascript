@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Hoisting</title>
+</head>
+<body>
+    <script>
+        /*
+            Le Hoisting, c'est le JavaScript qui va "remonter" toutes les variables en haut du code
+        */
+        // var prenom;
+        // console.log(nom); // Erreur
+        console.log(prenom); // Renvoie "undefined" mais pas la valeur
+
+        var prenom = 'Fiorella';
+
+        console.log(prenom);
+
+        mondeperdu(); // Les fonctions sont aussi "hoister"
+
+        function mondeperdu() { // Chaque fonction a son "scope", sa portée, sa limite
+            var nom = 'Mota'; // Accessible uniquement dans la fonction
+            prenom = 'Matthieu'; // prenom est accessible de partout
+            console.log(prenom);
+
+            function mondeencoreplusperdu() {
+                console.log(prenom + ' ' + nom);
+                covid = true; // Cette variable est globale et accessible de partout
+            }
+
+            mondeencoreplusperdu();
+        }
+
+        // mondeencoreplusperdu();
+
+        /*
+          Pourquoi utiliser let en JavaScript ?
+          let bloque une variable dans un bloc: if, for, while...
+        */
+        for (let i = 0; i < 10; i++) {
+            console.log(i);
+        }
+
+        // console.log('for: ' + i); // Affiche une erreur
+
+        // On a aussi des constantes (variables qui ne varient pas)
+        // La const est également bloquée dans un bloc: if, for, while...
+        if (true) {
+            const PI = 3.14;
+            // PI = 3.15; // Renvoie une erreur
+            console.log(PI);
+        }
+
+        console.log(PI); // PI n'est plus accessible
+    </script>
+</body>
+</html>
