@@ -1,0 +1,24 @@
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #eeeeee;
+}
+
+.rounded-xl {
+    border-radius: 1rem;
+}
+
+.main-image {
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.media img {
+    object-fit: cover;
+}
+
+@media (max-width: 991px) {
+    .main-image {
+        border-top-right-radius: 1rem;
+        border-bottom-left-radius: 0;
+    }
+}
