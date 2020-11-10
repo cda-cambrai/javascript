@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableaux multidimensionnels</title>
+</head>
+<body>
+
+    <script>
+        // Un tableau de chaines
+        var products = ['iPhone 12', 'Galaxy S20', 'Xiaomi'];
+        // Un tableau d'entiers
+        var prices = [1000, 1000, 500];
+        // Un tableau d'objets
+        var products = [
+            { name: 'iPhone 12', price: 1200 },
+            { name: 'Galaxy S20', price: 1000 },
+            { name: 'Xiaomi', price: 500 }
+        ];
+        // Afficher le prix du Galaxy S20
+        console.log(products[1].price);
+
+        /*
+         * Les tableaux multidimensionnels
+         * Un tableau peut avoir plusieurs dimensions (n dimensions)
+         */
+        // Un tableau de tableaux (2 dimensions)
+        var sizes = [
+            ['64go', '128go', '256go'],
+            ['32go', '64go'],
+            ['512go', '1to']
+        ];
+
+        // Un tableau d'objets (Avec ces objets qui contiennent un tableau)
+        var productsWithSizes = [
+            { name: 'iPhone 12', price: 1200, sizes: ['64go', '128go', '256go'] },
+            { name: 'Galaxy S20', price: 1000, sizes: ['32go', '64go'] },
+            { name: 'Xiaomi', price: 500, sizes: ['512go', '1to'] }
+        ];
+        // Afficher le prix du Galaxy S20
+        console.log(productsWithSizes[0]['sizes'][1]);
+        console.log(productsWithSizes[0].sizes[1]);
+
+        // Parcourir la liste de nos produits
+        for (var i = 0; i < productsWithSizes.length; i++) {
+            // iPhone 12 existe en 64go, 128go, 256go
+            console.log(productsWithSizes[i].name + ' existe en ' + productsWithSizes[i].sizes.join(', '));
+        }
+
+        /*
+         * Objectif: Trouver le nombre 123
+         * Ecrire le bon code en accèdant à l'objet "monObjetFou" et aux tableaux pour afficher le nombre 123
+         */
+        var monObjetFou = {
+            nom: 'Un objet ridicule',
+            'un tableau': [7, 9, { objectif: 'confusion', nombre: 123 }, 3.3],
+            'animal au hasard': 'Requin banane'
+        };
+
+        console.log(monObjetFou['un tableau'][2].nombre);
+
+        /*
+         Afficher un jeu de morpion
+         */
+        var morpion = [
+            ['X', 'X', 'O'],
+            ['X', 'O', 'X'],
+            ['O', 'X', 'X']
+        ];
+
+        // Afficher le résultat du morpion dans la console
+        // Le pipe = Alt Gr + 6
+
+        // X | X | O |
+        // X | O | X |
+        // O | X | X |
+
+        // Ecrire un code qui permet de savoir si le morpion est gagnant pour les O (2 diagonales)
+    </script>
+</body>
+</html>
