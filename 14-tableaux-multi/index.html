@@ -32,6 +32,8 @@
             ['512go', '1to']
         ];
 
+        console.log(sizes[0][1]);
+
         // Un tableau d'objets (Avec ces objets qui contiennent un tableau)
         var productsWithSizes = [
             { name: 'iPhone 12', price: 1200, sizes: ['64go', '128go', '256go'] },
@@ -76,7 +78,65 @@
         // X | O | X |
         // O | X | X |
 
+        // Version sans la boucle
+        console.log(morpion[0].join(' | '));
+        console.log(morpion[1].join(' | '));
+        console.log(morpion[2].join(' | '));
+
+        // Version avec la boucle
+        for (var i = 0; i < morpion.length; i++) {
+            console.log(morpion[i].join(' | '));
+        }
+
+        // Version sans le join
+        for (var ligne = 0; ligne < morpion.length; ligne++) {
+            var resultat = ''; // Sert à stocker chaque ligne
+
+            for (var colonne = 0; colonne < morpion[ligne].length; colonne++) {
+                // console.log(ligne + ' : ' + colonne);
+                console.log(morpion[ligne][colonne]);
+                // morpion[0][0]
+                // morpion[0][1]
+                // morpion[0][2]
+                resultat = resultat + morpion[ligne][colonne] + ' | ';
+            }
+
+            console.log(resultat);
+        }
+
+
+
         // Ecrire un code qui permet de savoir si le morpion est gagnant pour les O (2 diagonales)
+        morpion[0][2]; // O
+        morpion[1][1]; // O
+        morpion[2][0]; // O
+
+        var morpion = [
+            ['X', 'X', 'O'],
+            ['X', 'O', 'X'],
+            ['O', 'X', 'X']
+        ];
+
+        if (morpion[0][2] === 'O' && morpion[1][1] === 'O' && morpion[2][0] === 'O') {
+            console.log('Je gagne');
+        }
+
+        // Méthode alternative
+        var resultat = [];
+        for (var ligne = 0; ligne < morpion.length; ligne++) {
+            for (var colonne = 0; colonne < morpion[ligne].length; colonne++) {
+                if (morpion[ligne][colonne] === 'O') {
+                    // Remplir un tableau avec le numéro de ligne et le numéro de colonne
+                    resultat.push(colonne);
+                }
+            }
+        }
+
+        // On peut vérifier si resultat contient les colonnes attendues
+        // On transforme le tableau [2, 1, 0] en chaine pour le comparer à la chaine '2,1,0'
+        if (resultat.join(',') === '2,1,0') {
+            console.log('Je gagne aussi');
+        }
     </script>
 </body>
 </html>
