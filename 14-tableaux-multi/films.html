@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Films</title>
+</head>
+<body>
+    
+    <script>
+        /*
+         * Gestion de films et de séries
+         *
+         * Dans un film, on va stocker
+         *  - le titre (chaine)
+         *  - la date de sortie (année)
+         *  - la durée (minutes)
+         *  - la liste des acteurs (tableau de chaines)
+         *  - Et le format (DVD, VOD, Blu-Ray) (chaine)
+         *  - Le genre (chaine)
+         */
+        var films = [
+            {
+                titre: 'Star Wars: Un nouvel espoir',
+                dateDeSortie: 1977,
+                duree: 125,
+                acteurs: ['Mark Hamill', 'Carrie Fisher', 'Harrison Ford'],
+                format: 'VOD',
+                genre: 'Science-fiction'
+            },
+            {
+                titre: 'Harry Potter à l\'école des sorciers',
+                dateDeSortie: 2001,
+                duree: 152,
+                acteurs: ['Daniel Radcliffe', 'Rupert Grint', 'Emma Watson'],
+                format: 'DVD',
+                genre: 'Science-fiction'
+            },
+            {
+                titre: 'Le monde de Nemo',
+                dateDeSortie: 2003,
+                duree: 101,
+                acteurs: ['Albert Brooks', 'Nemo', 'Dorie'],
+                format: 'Blu-ray',
+                genre: 'Animation'
+            }
+        ];
+
+        // - Afficher la liste des films (le nom et l'année de sortie)
+        console.log('Afficher la liste des films (le nom et l\'année de sortie) ------------------------');
+
+        for (var i = 0; i < films.length; i++) {
+            console.log(films[i].titre + ' sorti en ' + films[i].dateDeSortie);
+        }
+
+        // - Afficher les films sortis avant 2000
+        console.log('Afficher les films sortis avant 2000 -------------------------');
+
+        for (var i = 0; i < films.length; i++) {
+            if (films[i].dateDeSortie < 2000) {
+                console.log(films[i].titre + ' est sorti avant 2000');
+            }
+        }
+
+        // - Afficher les films qui durent plus de 2h
+        console.log('Afficher les films qui durent plus de 2h ----------------------');
+
+        for (var i = 0; i < films.length; i++) {
+            if (films[i].duree > 120) {
+                console.log(films[i].titre + ' dure plus de 2h.');
+            }
+        }
+
+        // - Afficher la liste des acteurs de Harry Potter
+        console.log('Afficher la liste des acteurs de Harry Potter ----------------------');
+
+        // films[1] correspond au film Harry Potter
+        for (var i = 0; i < films[1].acteurs.length; i++) {
+            console.log(films[1].acteurs[i]);
+        }
+
+        // Alternative plus "générique"
+        for (var i = 0; i < films.length; i++) {
+            if (films[i].titre == 'Harry Potter à l\'école des sorciers') {
+                console.log(films[i].acteurs.join(', '));
+            }
+        }
+
+        // - Afficher uniquement les Blu-ray
+        console.log('Afficher uniquement les Blu-ray ----------------------');
+
+        for (var i = 0; i < films.length; i++) {
+            if (films[i].format === 'Blu-ray') {
+                console.log(films[i].titre + ' est au format Blu-ray');
+            }
+        }
+
+        // - Afficher la durée de chaque film en heures (1h41 pour 101) Pourquoi pas une fonction ?
+        console.log('Afficher la durée de chaque film en heures (1h41 pour 101) Pourquoi pas une fonction ?');
+
+        // Transforme 125 en 2h05m
+        function formatDuree(minutes) {
+
+        }
+
+        for (var i = 0; i < films.length; i++) {
+            var hour = Math.floor(films[i].duree / 60); // Pour 125, renvoie 2
+            var minutes = films[i].duree % 60; // Pour 125, renvoie 5
+
+            // Ajouter un 0 devant si le nombre de minutes est inférieur à 10
+            if (minutes < 10) {
+                minutes = '0' + minutes;
+            }
+
+            console.log(hour + 'h' + minutes + 'm');
+            // console.log(formatDuree(films[i].duree));
+        }
+        
+
+        // - Afficher tous les acteurs qui ont joués dans un film de Science-fiction
+        // - Afficher toutes les catégories ainsi que la totalité de la durée de leur film
+        //    Animation: 1h41minutes (101)
+        //    Science-fiction: 4h37minutes (125 + 152)
+    </script>
+</body>
+</html>
