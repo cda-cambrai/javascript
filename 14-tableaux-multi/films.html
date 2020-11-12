@@ -32,7 +32,7 @@
                 titre: 'Harry Potter à l\'école des sorciers',
                 dateDeSortie: 2001,
                 duree: 152,
-                acteurs: ['Daniel Radcliffe', 'Rupert Grint', 'Emma Watson'],
+                acteurs: ['Daniel Radcliffe', 'Rupert Grint', 'Emma Watson', 'Mark Hamill'],
                 format: 'DVD',
                 genre: 'Science-fiction'
             },
@@ -99,12 +99,20 @@
         console.log('Afficher la durée de chaque film en heures (1h41 pour 101) Pourquoi pas une fonction ?');
 
         // Transforme 125 en 2h05m
-        function formatDuree(minutes) {
+        function formatDuree(dureeEnMinutes) {
+            var hour = Math.floor(dureeEnMinutes / 60); // Pour 125, renvoie 2
+            var minutes = dureeEnMinutes % 60; // Pour 125, renvoie 5
 
+            // Ajouter un 0 devant si le nombre de minutes est inférieur à 10
+            if (minutes < 10) {
+                minutes = '0' + minutes;
+            }
+
+            return hour + 'h' + minutes + 'm';
         }
 
         for (var i = 0; i < films.length; i++) {
-            var hour = Math.floor(films[i].duree / 60); // Pour 125, renvoie 2
+            /*var hour = Math.floor(films[i].duree / 60); // Pour 125, renvoie 2
             var minutes = films[i].duree % 60; // Pour 125, renvoie 5
 
             // Ajouter un 0 devant si le nombre de minutes est inférieur à 10
@@ -112,15 +120,76 @@
                 minutes = '0' + minutes;
             }
 
-            console.log(hour + 'h' + minutes + 'm');
-            // console.log(formatDuree(films[i].duree));
+            console.log(hour + 'h' + minutes + 'm');*/
+            console.log(formatDuree(films[i].duree));
         }
         
 
         // - Afficher tous les acteurs qui ont joués dans un film de Science-fiction
+        console.log('Afficher tous les acteurs qui ont joués dans un film de Science-fiction ---------------');
+        // On initialise un tableau vide pour pouvoir le remplir plus tard
+        var acteursSf = [];
+        for (var i = 0; i < films.length; i++) {
+            if (films[i].genre === 'Science-fiction') {
+                //console.log(films[i].acteurs.join(', '));
+                //acteursSf.push(films[i].acteurs.join(', '));
+                // Parcourir tous les acteurs du film en question
+                for (var j = 0; j < films[i].acteurs.length; j++) {
+                    // films[i].acteurs[j] renvoie le nom de chaque acteur un par un
+                    // On vérifie que l'acteur n'est pas déjà présent dans le tableau pour éviter les doublons
+                    if (! acteursSf.includes(films[i].acteurs[j])) {
+                        acteursSf.push(films[i].acteurs[j]);
+                    }
+                }
+            }
+        }
+
+        console.log(acteursSf.join(', '));
+
         // - Afficher toutes les catégories ainsi que la totalité de la durée de leur film
         //    Animation: 1h41minutes (101)
         //    Science-fiction: 4h37minutes (125 + 152)
+        console.log('Afficher toutes les catégories ainsi que la totalité de la durée de leur film ---------------');
+
+        var genres = []; // Je vais stocker tous les genres de films de manière unique ainsi que leur durée
+        //var scienceFiction = 0;
+        //var animation = 0;
+        var genresDuration = {'Science-fiction': 0, 'Animation': 0};
+
+        for (var i = 0; i < films.length; i++) {
+            // console.log(films[i].genre);
+            // Je stocke dans un tableau le genre et la durée du film
+            genres.push([films[i].genre, films[i].duree]);
+        }
+
+        // On va devoir additionner les durées pour une même catégorie
+        for (var i = 0; i < genres.length; i++) {
+            // Si la catégorie qu'on parcours est Science-fiction, on incrémente science fiction avec la bonne durée
+            if (genres[i][0] === 'Science-fiction') {
+                //scienceFiction = scienceFiction + genres[i][1];
+                genresDuration['Science-fiction'] = genresDuration['Science-fiction'] + genres[i][1];
+            } else if (genres[i][0] === 'Animation') {
+                //animation = animation + genres[i][1];
+                genresDuration['Animation'] = genresDuration['Animation'] + genres[i][1];
+            }
+
+            // Si on veut que ce soit dynamique (Fonctionne peu importe le nombre de catégories)
+            var genreName = genres[i][0];
+            var genreDura = genres[i][1];
+            //genresDuration[genreName] = genresDuration[genreName] + genreDura;
+        }
+
+        // Afficher le résultat
+        var genreDoublon = [];
+
+        for (var i = 0; i < genres.length; i++) {
+            var genreName = genres[i][0];
+
+            if (!genreDoublon.includes(genreName)) { // Je vérifie si le genre n'a pas déjà été affiché
+                console.log(genreName + ': ' + formatDuree(genresDuration[genreName]));
+                genreDoublon.push(genreName); // Une fois que le genre a été affiché, on l'ajoute dans les doublons
+            }
+        }
     </script>
 </body>
 </html>
