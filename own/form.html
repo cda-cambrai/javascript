@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Formulaire</title>
+    </head>
+    <body>
+        <form action="" method="post" id="form">
+            <div id="errors"></div>
+            <input type="text" id="firstname" placeholder="Prénom">
+            <label for="uppercase">
+                <input type="checkbox" id="uppercase">
+                En majuscule ?
+            </label>
+            <select id="gender">
+                <option value="fille">Fille</option>
+                <option value="garcon">Garçon</option>
+            </select>
+            <button>Afficher</button>
+        </form>
+
+        <div id="result"></div>
+
+        <script>
+            let byId = (element) => {
+                return document.getElementById(element);
+            };
+
+            let listen = (event, element, callback) => {
+                return byId(element).addEventListener(event, callback);
+            };
+
+            let firstname = document.getElementById('firstname');
+            let uppercase = document.getElementById('uppercase');
+            let gender = document.getElementById('gender');
+            let errors = document.getElementById('errors');
+            let result = document.getElementById('result');
+
+            firstname.addEventListener('keyup', function () {
+                // this équivaut à l'objet firstname
+                let name = uppercase.checked ? this.value.toUpperCase() : this.value;
+
+                result.innerHTML = `<h1>${name}</h1>`;
+            });
+
+            uppercase.addEventListener('change', function () {
+                let name = this.checked ? firstname.value.toUpperCase() : firstname.value.toLowerCase();
+                firstname.value = name;
+
+                result.innerHTML = `<h1>${name}</h1>`;
+            });
+
+            document.getElementById('form').addEventListener('submit', function (event) {
+                // On évite d'envoyer le formulaire au serveur
+                event.preventDefault();
+
+                errors.innerHTML = ''; // On vide les erreurs
+                result.innerHTML = '';
+
+                if (firstname.value.length <= 0) {
+                    firstname.style.border = '1px solid red';
+                    errors.innerHTML += '<p style="color: red">Le prénom est trop court</p>';
+                }
+
+                if (!errors.hasChildNodes()) {
+                    firstname.style.border = '1px solid green';
+
+                    let name = uppercase.checked ? firstname.value.toUpperCase() : firstname.value;
+                    let type = gender.options[gender.selectedIndex];
+                    
+                    if (type.value == 'fille') {
+                        type = 'une fille 👩';
+                    } else {
+                        type = 'un garçon 🧑';
+                    }
+
+                    result.innerHTML = `<h1>${name}, tu es ${type}</h1>`;
+                }
+            });
+        </script>
+    </body>
+</html>

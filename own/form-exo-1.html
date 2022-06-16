@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Formulaire</title>
+    </head>
+    <body>
+        <form action="" method="post" id="form">
+            <div id="errors"></div>
+
+            <div>
+                <label>TVA</label>
+                <label>
+                    <input type="radio" name="tva" value="5.5"> 5,5%
+                </label>
+                <label>
+                    <input type="radio" name="tva" value="10"> 10%
+                </label>
+                <label>
+                    <input type="radio" name="tva" value="20"> 20%
+                </label>
+            </div>
+
+            <div>
+                <select id="product">
+                    <option value="Ocarina of time">Ocarina of Time</option>
+                    <option value="Wind Waker">Wind Waker</option>
+                </select>
+            </div>
+
+            <div>
+                <input type="text" id="quantity" placeholder="Quantité">
+            </div>
+
+            <div>
+                <input type="text" id="price-ht" placeholder="Prix HT">
+            </div>
+
+            <div>
+                <input type="text" id="amount-ht" placeholder="Montant HT" readonly>
+            </div>
+
+            <div>
+                <input type="text" id="amount-ttc" placeholder="Total TTC" readonly>
+            </div>
+
+            <button>Calculer</button>
+            <button type="button" id="clear">Effacer</button>
+        </form>
+
+        <div id="result"></div>
+
+        <script>
+            let byId = (element) => {
+                return document.getElementById(element);
+            };
+
+            let listen = (event, element, callback) => {
+                return byId(element).addEventListener(event, callback);
+            };
+
+            let radios = document.querySelectorAll('[name="tva"]');
+            let tax = null;
+            let quantity = document.getElementById('quantity');
+            let priceHT = document.getElementById('price-ht');
+            let amountHT = document.getElementById('amount-ht');
+            let amountTTC = document.getElementById('amount-ttc');
+            let errors = document.getElementById('errors');
+            let result = document.getElementById('result');
+
+            document.getElementById('clear').addEventListener('click', function () {
+                quantity.value = '';
+                priceHT.value = '';
+                amountHT.value = '';
+                amountTTC.value = '';
+
+                errors.innerHTML = '';
+                result.innerHTML = '';
+            });
+            
+            document.getElementById('form').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                for (radio of radios) {
+                    if (radio.checked) {
+                        tax = radio.value;
+                    }
+                }
+
+                errors.innerHTML = ''; // On vide les erreurs
+                result.innerHTML = '';
+
+                if (!tax) {
+                    errors.innerHTML += '<p style="color: red">Vous devez choisir une taxe.</p>';
+                }
+
+                if (quantity.value <= 0) {
+                    errors.innerHTML += '<p style="color: red">La quantité doit être supérieure à 0.</p>';
+                }
+
+                if (priceHT.value < 10) {
+                    errors.innerHTML += '<p style="color: red">Le prix doit être supérieur à 10.</p>';
+                }
+
+                if (!errors.hasChildNodes()) {
+                    amountHT.value = priceHT.value * quantity.value;
+                    amountTTC.value = amountHT.value * (1 + tax / 100);
+                }
+            });
+        </script>
+    </body>
+</html>

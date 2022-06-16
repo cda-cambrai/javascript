@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Album photo</title>
+    <style>
+        body {
+            display: flex;
+            flex-flow: column nowrap;
+            background-color: grey;
+            width: 90rem;
+            margin: 0 auto;
+            height: 100vh;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            height: 2rem;
+        }
+        .album {
+            background-color: white;
+            display: flex;
+            flex-flow: column nowrap;
+            width: 70rem;
+            flex-grow: 1;
+            margin: 0 auto;
+        }
+        #vignettes {
+            display: flex;
+            flex-flow: row nowrap;
+            justify-content: flex-start;
+            height: 3rem;
+            margin: 0 auto;
+            align-self: center;
+        }
+        .vignette {
+            flex-shrink: 1;
+            height: 3rem;
+            margin: 0 0.5rem;
+            padding: 0;
+        }
+        #ecran {
+            width: 40rem;
+            height: 20rem;
+            margin: 1rem auto;
+        }
+        footer {
+            width: 90rem;
+            height: 2rem;
+            background-color: #333;
+            color: grey;
+            text-align: right;
+            margin: 0 auto;
+        }
+        #add {
+            width: 4rem;
+            align-self: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Album photos</h1>
+    <section class="album">
+        <img id="ecran" src="images/fantasy-1.jpg" alt="">
+        <button type="button" id="add">+</button>
+        <div id="vignettes">
+            <img class="vignette" src="images/fantasy-1.jpg" />
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var showImages = 0;
+
+        $('#add').click(function () {
+            var countVignette = $('.vignette').length;
+
+            if (countVignette >= 6) {
+                $('#vignettes').empty();
+                countVignette = $('.vignette').length;
+            }
+
+            if (countVignette + 1 > 5) {
+                countVignette = 0;
+            }
+
+            var img = $('<img class="vignette" src="images/fantasy-'+(countVignette + 1)+'.jpg" />');
+            $('#vignettes').append(img);
+            $('#ecran').attr('src', 'images/fantasy-'+(countVignette + 1)+'.jpg');
+        });
+
+        $('#vignettes').on('click', '.vignette', function () {
+            $('#ecran').attr('src', $(this).attr('src'));
+
+            if (showImages++ >= 10) {
+                $('#add').fadeOut();
+            }
+        });
+    </script>
+</body>
+</html>

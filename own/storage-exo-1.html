@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>Local storage</title>
+    </head>
+    <body>
+        <form action="" method="post" id="form">
+            <input type="text" id="key" placeholder="Clé"> <br>
+            <input type="text" id="value" placeholder="Valeur"> <br>
+
+            <button>Ajouter</button>
+            <button type="button" id="remove">Supprimer</button>
+            <button type="button" id="clear">Vider</button>
+        </form>
+
+        <div id="all"></div>
+
+        <script>
+            let byId = (element) => {
+                return document.getElementById(element);
+            };
+
+            let listen = (event, element, callback) => {
+                return byId(element).addEventListener(event, callback);
+            };
+
+            let refresh = function () {
+                document.getElementById('all').innerHTML = '';
+                // On vérifie s'il y a des noms à afficher
+                for (let i = 0; i < localStorage.length; i++) {
+                    let div = document.createElement('div');
+                    div.textContent = localStorage.key(i) + ' ' + localStorage.getItem(localStorage.key(i));
+                    document.getElementById('all').appendChild(div);
+                }
+            }
+
+            let key = document.getElementById('key');
+            let value = document.getElementById('value');
+
+            document.getElementById('clear').addEventListener('click', function () {
+                localStorage.clear();
+                refresh();
+            });
+
+            document.getElementById('remove').addEventListener('click', function () {
+                localStorage.removeItem(key.value);
+                refresh();
+            });
+            
+            document.getElementById('form').addEventListener('submit', function (event) {
+                event.preventDefault();
+
+                localStorage.setItem(key.value, value.value);
+                refresh();
+            });
+
+            refresh();
+        </script>
+    </body>
+</html>
